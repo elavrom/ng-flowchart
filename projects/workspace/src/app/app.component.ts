@@ -4,7 +4,7 @@ import {
   TemplateRef,
   ViewChild,
   ChangeDetectionStrategy,
-  VERSION,
+  VERSION, ChangeDetectorRef, inject,
 } from '@angular/core';
 import { NgFlowchart } from 'projects/ng-flowchart/src/lib/model/flow.model';
 import { NgFlowchartStepRegistry } from 'projects/ng-flowchart/src/lib/ng-flowchart-step-registry.service';
@@ -93,6 +93,7 @@ export class AppComponent implements AfterViewInit {
   canvas: NgFlowchartCanvasDirective;
 
   disabled = false;
+  disabledStep = false;
 
   constructor(private stepRegistry: NgFlowchartStepRegistry) {
     this.callbacks.onDropError = this.onDropError;

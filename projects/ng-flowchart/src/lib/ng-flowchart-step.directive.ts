@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   AfterViewInit,
   Directive,
   ElementRef,
@@ -11,7 +12,7 @@ import { DropDataService } from './services/dropdata.service';
 @Directive({
   selector: '[ngFlowchartStep]',
 })
-export class NgFlowchartStepDirective implements AfterViewInit {
+export class NgFlowchartStepDirective implements AfterViewInit, AfterViewChecked {
   @HostListener('dragstart', ['$event'])
   onDragStart(event: DragEvent) {
     this.data.setDragStep(this.flowStep);
@@ -25,14 +26,17 @@ export class NgFlowchartStepDirective implements AfterViewInit {
   }
 
   @Input('ngFlowchartStep')
-  flowStep: NgFlowchart.PendingStep;
+  flowStep: NgFlowchart.PendingStep | null;
 
   constructor(
     protected element: ElementRef<HTMLElement>,
     private data: DropDataService
   ) {
-    this.element.nativeElement.setAttribute('draggable', 'true');
   }
 
   ngAfterViewInit() {}
+
+  ngAfterViewChecked() {
+    this.element.nativeElement.setAttribute('draggable', this.flowStep ? 'true' : 'false');
+  }
 }
