@@ -4,7 +4,7 @@ import {
   TemplateRef,
   ViewChild,
   ChangeDetectionStrategy,
-  VERSION, ChangeDetectorRef, inject,
+  VERSION,
 } from '@angular/core';
 import { NgFlowchart } from 'projects/ng-flowchart/src/lib/model/flow.model';
 import { NgFlowchartStepRegistry } from 'projects/ng-flowchart/src/lib/ng-flowchart-step-registry.service';
